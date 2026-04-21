@@ -1,1 +1,65 @@
 @import "tailwindcss";
+
+@theme {
+  --color-space-bg: #070d1a;
+  --color-space-card: #0d1629;
+  --color-space-border: rgba(99, 179, 237, 0.15);
+  --color-space-accent: #63b3ed;
+  --color-text-muted: #718096;
+  --color-skeleton-base: #0d1629;
+  --color-skeleton-shine: #162035;
+
+  --font-orbitron: 'Orbitron', monospace;
+  --font-exo: 'Exo 2', sans-serif;
+
+  --animate-shimmer: shimmer 1.6s infinite linear;
+  --animate-float: float 4s ease-in-out infinite;
+  --animate-fadein: fadeInUp 0.5s ease both;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes orbit {
+  from { transform: rotate(0deg) translateX(var(--orbit-r)) rotate(0deg); }
+  to   { transform: rotate(360deg) translateX(var(--orbit-r)) rotate(-360deg); }
+}
+
+body {
+  background-color: var(--color-space-bg);
+  font-family: var(--font-exo);
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(99, 179, 237, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(246, 173, 85, 0.03) 0%, transparent 40%);
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    #0d1629 0%,
+    #162035 40%,
+    #0d1629 80%
+  );
+  background-size: 200% 100%;
+  animation: var(--animate-shimmer);
+}
+
+.planet-float {
+  animation: var(--animate-float);
+}
+
+.card-fadein {
+  animation: var(--animate-fadein);
+}

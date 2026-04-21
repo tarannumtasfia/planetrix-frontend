@@ -1,11 +1,25 @@
 export default function Skeleton() {
   return (
-    <div className="bg-white rounded-xl shadow-md overflow-hidden animate-pulse">
-      <div className="h-40 bg-gray-300"></div>
+    <div className="bg-[#0d1629] border border-[rgba(99,179,237,0.15)] rounded-2xl overflow-hidden">
 
-      <div className="p-4 space-y-2">
-        <div className="h-4 bg-gray-300 w-3/4"></div>
-        <div className="h-4 bg-gray-200 w-1/2"></div>
+      {/* Visual placeholder */}
+      <div className="h-44 bg-[#080e1d] flex items-center justify-center">
+        <div className="w-28 h-28 rounded-full skeleton-shimmer" />
+      </div>
+
+      {/* Body placeholder */}
+      <div className="p-4 space-y-3">
+        {/* Title */}
+        <div className="h-4 w-3/5 rounded-md skeleton-shimmer" />
+
+        {/* Stats */}
+        <div className="flex gap-4">
+          <div className="h-7 w-20 rounded-md skeleton-shimmer" />
+          <div className="h-7 w-16 rounded-md skeleton-shimmer" />
+        </div>
+
+        {/* Button */}
+        <div className="h-8 w-full rounded-lg skeleton-shimmer" />
       </div>
     </div>
   );

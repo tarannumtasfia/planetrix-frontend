@@ -1,22 +1,51 @@
 "use client";
-
 import { useState, useEffect } from "react";
-import Navbar from "./components/Navbar";
-import Card from "./components/Card";
-import Skeleton from "./components/Skeleton";
-import SectionHeader from "./components/SectionHeader";
 import OrbitalDiagram from "./components/OrbitalDiagram";
+import Image from "next/image";
 
 const PLANETS = [
-  { name: "Mercury", type: "Terrestrial", distance: "77M km",  moons: 0,   color: "#a0a0a0", emoji: "🪨", gradient: "radial-gradient(circle at 35% 35%, #c8c8c8, #606060)" },
-  { name: "Venus",   type: "Terrestrial", distance: "261M km", moons: 0,   color: "#e8c56e", emoji: "🌕", gradient: "radial-gradient(circle at 35% 35%, #f5e08a, #c47a1e)" },
-  { name: "Earth",   type: "Terrestrial", distance: "150M km", moons: 1,   color: "#4a90d9", emoji: "🌍", gradient: "radial-gradient(circle at 35% 35%, #6bb8f7, #1a4a8a)" },
-  { name: "Mars",    type: "Terrestrial", distance: "225M km", moons: 2,   color: "#c1440e", emoji: "🔴", gradient: "radial-gradient(circle at 35% 35%, #e0654a, #8a2a0a)" },
-  { name: "Jupiter", type: "Gas Giant",   distance: "778M km", moons: 95,  color: "#c88b3a", emoji: "🟠", gradient: "radial-gradient(circle at 35% 35%, #e8b86d, #9a5a1a)" },
-  { name: "Saturn",  type: "Gas Giant",   distance: "1.4B km", moons: 146, color: "#e4d191", emoji: "🪐", gradient: "radial-gradient(circle at 35% 35%, #f0e0a0, #b09040)" },
-  { name: "Uranus",  type: "Ice Giant",   distance: "2.9B km", moons: 28,  color: "#7de8e8", emoji: "🔵", gradient: "radial-gradient(circle at 35% 35%, #a0f0f0, #2a9898)" },
-  { name: "Neptune", type: "Ice Giant",   distance: "4.5B km", moons: 16,  color: "#4b70dd", emoji: "💙", gradient: "radial-gradient(circle at 35% 35%, #7090f0, #1a2a90)" },
+  { name: "Mercury", color: "#a0a0a0", gradient: "radial-gradient(circle at 35% 30%, #c8c8c8, #606060)" },
+  { name: "Venus", color: "#e8c56e", gradient: "radial-gradient(circle at 35% 30%, #f5e08a, #c47a1e)" },
+  { name: "Earth", color: "#4a90d9", gradient: "radial-gradient(circle at 35% 30%, #6bb8f7, #1a4a8a)" },
+  { name: "Mars", color: "#c1440e", gradient: "radial-gradient(circle at 35% 30%, #e0654a, #8a2a0a)" },
+  { name: "Jupiter", color: "#c88b3a", gradient: "radial-gradient(circle at 35% 30%, #e8b86d, #9a5a1a)" },
+  { name: "Saturn", color: "#e4d191", gradient: "radial-gradient(circle at 35% 30%, #f0e0a0, #b09040)", hasRing: true },
+  { name: "Uranus", color: "#7de8e8", gradient: "radial-gradient(circle at 35% 30%, #a0f0f0, #2a9898)" },
+  { name: "Neptune", color: "#4b70dd", gradient: "radial-gradient(circle at 35% 30%, #7090f0, #1a2a90)" },
 ];
+
+function PlanetSphere({ gradient, color, size, hasRing }: {
+  gradient: string; color: string; size: number; hasRing?: boolean;
+}) {
+  return (
+    <div className="relative flex items-center justify-center" style={{ width: size, height: size }}>
+      {hasRing && (
+        <div
+          className="absolute rounded-full border-[3px]"
+          style={{
+            width: size * 1.7,
+            height: size * 0.35,
+            borderColor: `${color}99`,
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%) rotateX(75deg)",
+            zIndex: 0,
+          }}
+        />
+      )}
+      <div
+        className="rounded-full shadow-[inset_-6px_-4px_14px_rgba(0,0,0,0.55)]"
+        style={{
+          width: size,
+          height: size,
+          background: gradient,
+          position: "relative",
+          zIndex: 1,
+        }}
+      />
+    </div>
+  );
+}
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -28,49 +57,44 @@ export default function Home() {
 
   return (
     <main className="min-h-screen">
-      <Navbar />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 pb-20">
 
-        {/* Hero */}
-        <section className="py-16 md:py-20 max-w-xl">
-          <p className="text-[11px] font-[family-name:var(--font-orbitron)] tracking-[0.2em] uppercase text-[#63b3ed] mb-5">
-            ✦ &nbsp; Explore the Cosmos
-          </p>
-          <h1 className="font-[family-name:var(--font-orbitron)] font-black text-4xl md:text-5xl lg:text-6xl leading-tight text-slate-200 mb-5">
-            Discover the<br />
-            <span className="text-[#63b3ed]">Solar System</span>
-          </h1>
-          <p className="text-base text-[#718096] leading-relaxed max-w-md">
-            Journey through space and explore the planets, moons, and wonders of our celestial neighborhood.
-          </p>
-        </section>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 pb-20 pt-10">
 
-        {/* Planets grid */}
-        <section className="mb-16">
-          <SectionHeader
-            title="Planets"
-            subtitle="Our Solar System's eight worlds"
-            count={8}
+        {/* Planet display panel */}
+        <section className="mb-8">
+          {loading ? (
+            <div className="flex items-end justify-between px-6 py-8 border border-[rgba(99,179,237,0.15)] rounded-2xl bg-[#080e1d]">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <div
+                  key={i}
+                  className="skeleton-shimmer rounded-full"
+                  style={{ width: 80 + i * 8, height: 80 + i * 8 }}
+                />
+              ))}
+            </div>
+          ) : (
+            <Image
+            src="/top_portion.png"
+            alt="Solar system planets"
+            width={1200}
+            height={600}
+            className="w-full rounded-2xl"
           />
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-5">
-            {loading
-              ? Array.from({ length: 8 }).map((_, i) => <Skeleton key={i} />)
-              : PLANETS.map((p) => <Card key={p.name} planet={p} />)
-            }
-          </div>
+          )}
         </section>
 
         {/* Orbital diagram */}
-        <section className="mb-16">
-          <SectionHeader
-            title="Orbital Map"
-            subtitle="Real-time orbital simulation"
-          />
-          {loading
-            ? <div className="h-64 md:h-96 rounded-2xl skeleton-shimmer" />
-            : <OrbitalDiagram />
-          }
+        <section className="mb-8">
+
+
+
+          {/* Orbital diagram */}
+          {loading ? (
+            <div className="rounded-2xl skeleton-shimmer" style={{ minHeight: 360 }} />
+          ) : (
+            <OrbitalDiagram />
+          )}
         </section>
 
       </div>

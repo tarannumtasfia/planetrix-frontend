@@ -3,10 +3,6 @@ import { useState, useEffect } from "react";
 import OrbitalDiagram from "./components/OrbitalDiagram";
 import Image from "next/image";
 
-
-
-
-
 export default function Home() {
   const [loading, setLoading] = useState(true);
 
@@ -42,42 +38,45 @@ export default function Home() {
           )}
         </section>
 
-        {/* ── Section 2: Planet cards with label overlay ── */}
+        {/* ── Section 2+3: Planet cards LEFT + Orbital diagram RIGHT ── */}
         <section className="mb-8">
           {loading ? (
-            <div className="flex gap-4">
-              <div className="skeleton-shimmer rounded-2xl" style={{ width: 220, height: 460 }} />
-              <div className="skeleton-shimmer rounded-2xl" style={{ width: 220, height: 460 }} />
+            <div className="flex gap-5 items-center">
+              {/* Left skeletons */}
+              <div className="flex gap-3 shrink-0">
+                <div className="skeleton-shimmer rounded-2xl w-[110px] h-[260px]" />
+                <div className="skeleton-shimmer rounded-2xl w-[110px] h-[260px]" />
+              </div>
+              {/* Right skeleton */}
+              <div className="skeleton-shimmer rounded-2xl flex-1 h-[260px]" />
             </div>
           ) : (
-            <div className="flex gap-4 items-start">
-              {/* Left image: 2 stacked planets with border */}
-              <Image
-                src="/mars_left.png"
-                alt="Planet left"
-                width={220}
-                height={460}
-                className="rounded-2xl object-contain"
-              />
+            <div className="flex gap-5 items-start">
 
-              {/* Right image: single planet with PLANET label */}
-              <Image
-                src="/mars_right.png"
-                alt="Planet right"
-                width={220}
-                height={230}
-                className="rounded-2xl object-contain"
-              />
+              {/* LEFT: mars images side by side */}
+              <div className="flex gap-3 shrink-0">
+                <Image
+                  src="/mars_left.png"
+                  alt="Planet left"
+                  width={472}
+                  height={620}
+                  className="w-[110px] h-auto rounded-2xl object-contain"
+                />
+                <Image
+                  src="/mars_right.png"
+                  alt="Planet right"
+                  width={438}
+                  height={280}
+                  className="w-[110px] h-auto rounded-2xl object-contain"
+                />
+              </div>
+
+              {/* RIGHT: orbital diagram takes remaining space */}
+              <div className="flex-1 flex justify-center">
+                <OrbitalDiagram />
+              </div>
+
             </div>
-          )}
-        </section>
-
-        {/* ── Section 3: Orbital diagram ── */}
-        <section className="mb-8">
-          {loading ? (
-            <div className="rounded-2xl skeleton-shimmer" style={{ minHeight: 360 }} />
-          ) : (
-            <OrbitalDiagram />
           )}
         </section>
 

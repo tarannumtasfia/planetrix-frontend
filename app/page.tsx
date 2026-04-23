@@ -15,8 +15,8 @@ export default function Home() {
     <main className="min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 pb-20 pt-10">
 
-        {/* ── Section 1: Planet image panel (top rows) ── */}
-        <section className="mb-8">
+        {/* ── Section 1: Top planet rows ── */}
+        <section className="mb-6">
           {loading ? (
             <div className="flex items-end justify-between px-6 py-8 border border-[rgba(99,179,237,0.15)] rounded-2xl bg-[#080e1d]">
               {Array.from({ length: 8 }).map((_, i) => (
@@ -38,23 +38,23 @@ export default function Home() {
           )}
         </section>
 
-        {/* ── Section 2+3: Planet cards LEFT + Orbital diagram RIGHT ── */}
-        <section className="mb-8">
+        {/* ── Section 2: Bottom layout — 2 column grid ── */}
+        <section>
           {loading ? (
-            <div className="flex gap-5 items-center">
-              {/* Left skeletons */}
-              <div className="flex gap-3 shrink-0">
+            <div className="grid grid-cols-2 gap-6">
+              {/* bottom-left skeleton */}
+              <div className="flex gap-3">
                 <div className="skeleton-shimmer rounded-2xl w-[110px] h-[260px]" />
                 <div className="skeleton-shimmer rounded-2xl w-[110px] h-[260px]" />
               </div>
-              {/* Right skeleton */}
-              <div className="skeleton-shimmer rounded-2xl flex-1 h-[260px]" />
+              {/* bottom-right skeleton */}
+              <div className="skeleton-shimmer rounded-2xl h-[320px]" />
             </div>
           ) : (
-            <div className="flex gap-5 items-start">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 ">
 
-              {/* LEFT: mars images side by side */}
-              <div className="flex gap-3 shrink-0">
+              {/* BOTTOM-LEFT: planet cards */}
+              <div className="flex gap-3 items-start">
                 <Image
                   src="/mars_left.png"
                   alt="Planet left"
@@ -71,8 +71,8 @@ export default function Home() {
                 />
               </div>
 
-              {/* RIGHT: orbital diagram takes remaining space */}
-              <div className="flex-1 flex justify-center">
+              {/* BOTTOM-RIGHT: orbital diagram */}
+              <div className="flex justify-center">
                 <OrbitalDiagram />
               </div>
 

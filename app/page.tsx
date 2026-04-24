@@ -8,6 +8,7 @@ type Planet = {
   name: string;
   bigImage: string;
   smallImage: string;
+  bgImage: string;
   galaxy: string;
   diameter: string;
   lengthOfDay: string;
@@ -15,15 +16,15 @@ type Planet = {
 };
 
 const PLANETS: Planet[] = [
-  { id: "sun", name: "Sun", bigImage: "/sun_big.png", smallImage: "/sun_small.png", galaxy: "Milky Way", diameter: "1,392,684 km", lengthOfDay: "---", avgTemp: "6000 Kelvin" },
-  { id: "mercury", name: "Mercury", bigImage: "/mercury_big.png", smallImage: "/mercury_small.png", galaxy: "Milky Way", diameter: "4,878 km", lengthOfDay: "4,222 Earth hours", avgTemp: "167°C" },
-  { id: "venus", name: "Venus", bigImage: "/venus_big.png", smallImage: "/venus_small.png", galaxy: "Milky Way", diameter: "12,104 km", lengthOfDay: "2,802 Earth hours", avgTemp: "464°C" },
-  { id: "earth", name: "Earth", bigImage: "/earth_big.png", smallImage: "/earth_small.png", galaxy: "Milky Way", diameter: "12,756 km", lengthOfDay: "24 hour ground", avgTemp: "15°C" },
-  { id: "mars", name: "Mars", bigImage: "/mars_big.png", smallImage: "/mars_small.png", galaxy: "Milky Way", diameter: "6,794 km", lengthOfDay: "24.7 Earth hours", avgTemp: "65 degrees Celsius" },
-  { id: "jupiter", name: "Jupiter", bigImage: "/jupiter_big.png", smallImage: "/jupiter_small.png", galaxy: "Milky Way", diameter: "142,984 km", lengthOfDay: "9.9 Earth hours", avgTemp: "110-degree Celsius" },
-  { id: "saturn", name: "Saturn", bigImage: "/saturn_big.png", smallImage: "/saturn_small.png", galaxy: "Milky Way", diameter: "120,536 km", lengthOfDay: "10.7 Earth hours", avgTemp: "140-degree Celsius" },
-  { id: "uranus", name: "Uranus", bigImage: "/uranus_big.png", smallImage: "/uranus_small.png", galaxy: "Milky Way", diameter: "51,118 km", lengthOfDay: "17.2 Earth hours", avgTemp: "195-degree Celsius" },
-  { id: "neptune", name: "Neptune", bigImage: "/neptune_big.png", smallImage: "/neptune_small.png", galaxy: "Milky Way", diameter: "49,528 km", lengthOfDay: "16.1 Earth hours", avgTemp: "-200°C" },
+  { id: "sun", name: "Sun", bigImage: "/sun_big.png", smallImage: "/sun_small.png", bgImage: "/sun_solar_system_02.png", galaxy: "Milky Way", diameter: "1,392,684 km", lengthOfDay: "---", avgTemp: "6000 Kelvin" },
+  { id: "mercury", name: "Mercury", bigImage: "/mercury_big.png", smallImage: "/mercury_small.png", bgImage: "/mercury_solar_system_02.png", galaxy: "Milky Way", diameter: "4,878 km", lengthOfDay: "4,222 Earth hours", avgTemp: "167°C" },
+  { id: "venus", name: "Venus", bigImage: "/venus_big.png", smallImage: "/venus_small.png", bgImage: "/venus_solar_system_02.png", galaxy: "Milky Way", diameter: "12,104 km", lengthOfDay: "2,802 Earth hours", avgTemp: "464°C" },
+  { id: "earth", name: "Earth", bigImage: "/earth_big.png", smallImage: "/earth_small.png", bgImage: "/earth_solar_system_02.png", galaxy: "Milky Way", diameter: "12,756 km", lengthOfDay: "24 hour ground", avgTemp: "15°C" },
+  { id: "mars", name: "Mars", bigImage: "/mars_big.png", smallImage: "/mars_small.png", bgImage: "/mars_solar_system_02.png", galaxy: "Milky Way", diameter: "6,794 km", lengthOfDay: "24.7 Earth hours", avgTemp: "65 degrees Celsius" },
+  { id: "jupiter", name: "Jupiter", bigImage: "/jupiter_big.png", smallImage: "/jupiter_small.png", bgImage: "/jupiter_solar_system_02.png", galaxy: "Milky Way", diameter: "142,984 km", lengthOfDay: "9.9 Earth hours", avgTemp: "110-degree Celsius" },
+  { id: "saturn", name: "Saturn", bigImage: "/saturn_big.png", smallImage: "/saturn_small.png", bgImage: "/saturn_solar_system_02.png", galaxy: "Milky Way", diameter: "120,536 km", lengthOfDay: "10.7 Earth hours", avgTemp: "140-degree Celsius" },
+  { id: "uranus", name: "Uranus", bigImage: "/uranus_big.png", smallImage: "/uranus_small.png", bgImage: "/Uranus_solar_system_02.png", galaxy: "Milky Way", diameter: "51,118 km", lengthOfDay: "17.2 Earth hours", avgTemp: "195-degree Celsius" },
+  { id: "neptune", name: "Neptune", bigImage: "/neptune_big.png", smallImage: "/neptune_small.png", bgImage: "/neptune_solar_system_02.png", galaxy: "Milky Way", diameter: "49,528 km", lengthOfDay: "16.1 Earth hours", avgTemp: "-200°C" },
 ];
 
 const BIG_SIZE = 100;
@@ -44,9 +45,9 @@ function PlanetDetail({
 
   return (
     <div
-      className="min-h-screen flex flex-col cursor-pointer"
+      className="min-h-screen flex flex-col"
       style={{
-        backgroundImage: "url('/bg_img.png')",
+        backgroundImage: `url('${planet.bgImage}')`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",

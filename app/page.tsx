@@ -15,15 +15,15 @@ type Planet = {
 };
 
 const PLANETS: Planet[] = [
-  { id: "sun",     name: "Sun",     bigImage: "/sun_big.png",     smallImage: "/sun_small.png",     galaxy: "Milky Way", diameter: "1,392,684 km", lengthOfDay: "---",              avgTemp: "6000 Kelvin"        },
-  { id: "mercury", name: "Mercury", bigImage: "/mercury_big.png", smallImage: "/mercury_small.png", galaxy: "Milky Way", diameter: "4,878 km",     lengthOfDay: "4,222 Earth hours", avgTemp: "167°C"              },
-  { id: "venus",   name: "Venus",   bigImage: "/venus_big.png",   smallImage: "/venus_small.png",   galaxy: "Milky Way", diameter: "12,104 km",    lengthOfDay: "2,802 Earth hours", avgTemp: "464°C"              },
-  { id: "earth",   name: "Earth",   bigImage: "/earth_big.png",   smallImage: "/earth_small.png",   galaxy: "Milky Way", diameter: "12,756 km",    lengthOfDay: "24 hour ground",    avgTemp: "15°C"               },
-  { id: "mars",    name: "Mars",    bigImage: "/mars_big.png",    smallImage: "/mars_small.png",    galaxy: "Milky Way", diameter: "6,794 km",     lengthOfDay: "24.7 Earth hours",  avgTemp: "65 degrees Celsius" },
-  { id: "jupiter", name: "Jupiter", bigImage: "/jupiter_big.png", smallImage: "/jupiter_small.png", galaxy: "Milky Way", diameter: "142,984 km",   lengthOfDay: "9.9 Earth hours",   avgTemp: "110-degree Celsius" },
-  { id: "saturn",  name: "Saturn",  bigImage: "/saturn_big.png",  smallImage: "/saturn_small.png",  galaxy: "Milky Way", diameter: "120,536 km",   lengthOfDay: "10.7 Earth hours",  avgTemp: "140-degree Celsius" },
-  { id: "uranus",  name: "Uranus",  bigImage: "/uranus_big.png",  smallImage: "/uranus_small.png",  galaxy: "Milky Way", diameter: "51,118 km",    lengthOfDay: "17.2 Earth hours",  avgTemp: "195-degree Celsius" },
-  { id: "neptune", name: "Neptune", bigImage: "/neptune_big.png", smallImage: "/neptune_small.png", galaxy: "Milky Way", diameter: "49,528 km",    lengthOfDay: "16.1 Earth hours",  avgTemp: "-200°C"             },
+  { id: "sun", name: "Sun", bigImage: "/sun_big.png", smallImage: "/sun_small.png", galaxy: "Milky Way", diameter: "1,392,684 km", lengthOfDay: "---", avgTemp: "6000 Kelvin" },
+  { id: "mercury", name: "Mercury", bigImage: "/mercury_big.png", smallImage: "/mercury_small.png", galaxy: "Milky Way", diameter: "4,878 km", lengthOfDay: "4,222 Earth hours", avgTemp: "167°C" },
+  { id: "venus", name: "Venus", bigImage: "/venus_big.png", smallImage: "/venus_small.png", galaxy: "Milky Way", diameter: "12,104 km", lengthOfDay: "2,802 Earth hours", avgTemp: "464°C" },
+  { id: "earth", name: "Earth", bigImage: "/earth_big.png", smallImage: "/earth_small.png", galaxy: "Milky Way", diameter: "12,756 km", lengthOfDay: "24 hour ground", avgTemp: "15°C" },
+  { id: "mars", name: "Mars", bigImage: "/mars_big.png", smallImage: "/mars_small.png", galaxy: "Milky Way", diameter: "6,794 km", lengthOfDay: "24.7 Earth hours", avgTemp: "65 degrees Celsius" },
+  { id: "jupiter", name: "Jupiter", bigImage: "/jupiter_big.png", smallImage: "/jupiter_small.png", galaxy: "Milky Way", diameter: "142,984 km", lengthOfDay: "9.9 Earth hours", avgTemp: "110-degree Celsius" },
+  { id: "saturn", name: "Saturn", bigImage: "/saturn_big.png", smallImage: "/saturn_small.png", galaxy: "Milky Way", diameter: "120,536 km", lengthOfDay: "10.7 Earth hours", avgTemp: "140-degree Celsius" },
+  { id: "uranus", name: "Uranus", bigImage: "/uranus_big.png", smallImage: "/uranus_small.png", galaxy: "Milky Way", diameter: "51,118 km", lengthOfDay: "17.2 Earth hours", avgTemp: "195-degree Celsius" },
+  { id: "neptune", name: "Neptune", bigImage: "/neptune_big.png", smallImage: "/neptune_small.png", galaxy: "Milky Way", diameter: "49,528 km", lengthOfDay: "16.1 Earth hours", avgTemp: "-200°C" },
 ];
 
 const BIG_SIZE = 100;
@@ -43,8 +43,16 @@ function PlanetDetail({
   const rightPlanet = PLANETS[(idx + 1) % PLANETS.length];
 
   return (
-    <div className="min-h-screen flex flex-col" style={{ background: "#080e1d" }}>
-      {/* Header */}
+    <div
+      className="min-h-screen flex flex-col cursor-pointer"
+      style={{
+        backgroundImage: "url('/bg_img.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
+
       <div className="flex items-center justify-between px-8 pt-6 pb-2">
         <button
           onClick={onBack}
@@ -54,13 +62,13 @@ function PlanetDetail({
           ← Back
         </button>
         <div className="flex items-center gap-2">
-          <Image src="/globe.svg" alt="Planetrix" width={28} height={28} />
+          <Image src="/logo.png" alt="Planetrix" width={28} height={28} />
           <span className="text-white font-light tracking-[0.3em] text-sm uppercase">Planetrix</span>
         </div>
         <div className="w-16" />
       </div>
 
-      {/* Planet name + stats */}
+
       <div className="text-center pt-4 pb-2 px-4">
         <h1 className="text-white font-bold tracking-[0.25em] text-4xl mb-6 uppercase">
           {planet.name}
@@ -82,9 +90,9 @@ function PlanetDetail({
         </div>
       </div>
 
-      {/* Center section: left neighbor | big planet | right neighbor */}
+
       <div className="flex-1 flex items-center justify-between px-6 relative min-h-[340px]">
-        {/* Left planet */}
+
         <button
           onClick={() => onNavigate(leftPlanet.id)}
           className="flex flex-col items-center gap-2 group transition-transform hover:scale-105"
@@ -94,7 +102,7 @@ function PlanetDetail({
             alt={leftPlanet.name}
             width={130}
             height={130}
-            className="object-contain opacity-80 group-hover:opacity-100 transition-opacity"
+            className="object-contain opacity-80 group-hover:opacity-100 transition-opacity cursor-pointer"
             style={{ width: 130, height: 130 }}
           />
           <span className="text-white/60 text-xs tracking-widest uppercase group-hover:text-white transition-colors">
@@ -102,7 +110,7 @@ function PlanetDetail({
           </span>
         </button>
 
-        {/* Center big planet */}
+
         <div className="flex flex-col items-center">
           <Image
             src={planet.bigImage}
@@ -114,7 +122,7 @@ function PlanetDetail({
           />
         </div>
 
-        {/* Right planet */}
+
         <button
           onClick={() => onNavigate(rightPlanet.id)}
           className="flex flex-col items-center gap-2 group transition-transform hover:scale-105"
@@ -124,7 +132,7 @@ function PlanetDetail({
             alt={rightPlanet.name}
             width={130}
             height={130}
-            className="object-contain opacity-80 group-hover:opacity-100 transition-opacity"
+            className="object-contain opacity-80 group-hover:opacity-100 transition-opacity cursor-pointer"
             style={{ width: 130, height: 130 }}
           />
           <span className="text-white/60 text-xs tracking-widest uppercase group-hover:text-white transition-colors">
@@ -133,20 +141,17 @@ function PlanetDetail({
         </button>
       </div>
 
-      {/* Footer */}
       <div
         className="flex justify-between items-start px-8 py-6 mt-4"
         style={{ borderTop: "1px solid rgba(255,255,255,0.08)", background: "rgba(0,0,0,0.3)" }}
       >
-        <div className="max-w-xs">
+        <div className="max-w-sm">
           <div className="flex items-center gap-2 mb-3">
-            <Image src="/globe.svg" alt="Planetrix" width={22} height={22} />
+            <Image src="/logo.png" alt="Planetrix" width={22} height={22} />
             <span className="text-white/70 tracking-[0.3em] text-xs uppercase">Planetrix</span>
           </div>
-          <p className="text-white/30 text-xs leading-relaxed">
-            Lorem ipsum dolor sit amet consectetur. Fusce sed aliquam amet curabitur eget quam.
-            Tortor nam volutpat tincidunt nibh lacus vitae sed mi. Viverra eu commodo sed sed
-            commodo commodo urna sed.
+          <p className="text-white/30 text-xs leading-relaxed ">
+            Lorem ipsum dolor sit amet consectetur. Fusce sed aliquam amet curabitur eget quam. Tortor nam volutpat tincidunt nibh lacus vitae sed mi. Viverra eu commodo sed sed commodo commodo urna sed.
           </p>
         </div>
         <div className="flex flex-col gap-1 text-right">
@@ -187,7 +192,7 @@ export default function Home() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 pb-20 pt-10">
         <div style={{ border: "1pt dashed #9740FF" }}>
 
-          {/* ── Section 1: Big planet row ── */}
+
           <section >
             {loading ? (
               <div className="flex items-center justify-between px-6 py-3 rounded-2xl">
@@ -200,13 +205,13 @@ export default function Home() {
                 ))}
               </div>
             ) : (
-              <div className="flex items-center justify-between px-6 py-3 rounded-2xl">
+              <div className="flex items-center justify-between px-6 py-3 rounded-2xl ">
                 {PLANETS.map((planet) => (
                   <button
                     key={planet.id}
                     onClick={() => setSelectedPlanet(planet.id)}
                     className={`
-                      relative transition-all duration-300 rounded-full
+                      relative transition-all duration-300 rounded-full cursor-pointer
                       hover:scale-110 hover:brightness-110 focus:outline-none
                       ${selectedPlanet === planet.id
                         ? "ring-2 ring-[#9747FF] ring-offset-2 ring-offset-black scale-110 brightness-110"
@@ -221,7 +226,7 @@ export default function Home() {
                       width={BIG_SIZE}
                       height={BIG_SIZE}
                       className="rounded-full object-contain"
-                      style={{ width: BIG_SIZE, height: BIG_SIZE, cursor: "pointer" }}
+                      style={{ width: BIG_SIZE, height: BIG_SIZE }}
                     />
                   </button>
                 ))}
@@ -229,7 +234,6 @@ export default function Home() {
             )}
           </section>
 
-          {/* ── Section 2: Small planet row — tightly packed ── */}
           <section >
             {loading ? (
               <div className="flex items-center justify-center gap-1 px-6 py-4 rounded-2xl">
@@ -248,7 +252,7 @@ export default function Home() {
                     key={planet.id}
                     onClick={() => setSelectedPlanet(planet.id)}
                     className={`
-                      relative transition-all duration-300 rounded-full
+                      relative transition-all duration-300 rounded-full cursor-pointer
                       hover:scale-125 hover:brightness-110 focus:outline-none
                       ${selectedPlanet === planet.id
                         ? "ring-2 ring-[#9747FF] ring-offset-1 ring-offset-black scale-125 brightness-110"
@@ -263,7 +267,7 @@ export default function Home() {
                       width={SMALL_SIZE}
                       height={SMALL_SIZE}
                       className="rounded-full object-contain"
-                      style={{ width: SMALL_SIZE, height: SMALL_SIZE, cursor: "pointer" }}
+                      style={{ width: SMALL_SIZE, height: SMALL_SIZE }}
                     />
                   </button>
                 ))}
@@ -272,7 +276,7 @@ export default function Home() {
           </section>
         </div>
 
-        {/* ── Section 3: Bottom layout — 2 column grid ── */}
+
         <section>
           {loading ? (
             <div className="grid grid-cols-2 gap-6">
@@ -285,8 +289,7 @@ export default function Home() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-              {/* BOTTOM-LEFT: planet cards */}
-              <div className="flex gap-3 items-start">
+              <div className="flex gap-3 items-start cursor-pointer">
                 <Image
                   src="/mars_left.png"
                   alt="Planet left"
@@ -303,8 +306,7 @@ export default function Home() {
                 />
               </div>
 
-              {/* BOTTOM-RIGHT: orbital diagram */}
-              <div className="flex justify-center">
+              <div className="flex justify-center cursor-pointer">
                 <OrbitalDiagram />
               </div>
 

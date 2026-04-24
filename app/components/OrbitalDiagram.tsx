@@ -5,7 +5,7 @@ import Image from "next/image";
 export default function OrbitalDiagram() {
   return (
     <div className="relative w-full max-w-xxl mx-auto">
-      {/* Figma orbit image as background */}
+
       <Image
         src="/orbit.png"
         alt="Orbital diagram"
@@ -15,7 +15,7 @@ export default function OrbitalDiagram() {
         priority
       />
 
-      
+
     </div>
   );
 }

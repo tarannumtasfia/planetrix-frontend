@@ -188,9 +188,9 @@ export default function Home() {
         <div style={{ border: "1pt dashed #9740FF" }}>
 
           {/* ── Section 1: Big planet row ── */}
-          <section className="mb-4">
+          <section >
             {loading ? (
-              <div className="flex items-center justify-between px-6 py-8 rounded-2xl">
+              <div className="flex items-center justify-between px-6 py-3 rounded-2xl">
                 {PLANETS.map((_, i) => (
                   <div
                     key={i}
@@ -200,7 +200,7 @@ export default function Home() {
                 ))}
               </div>
             ) : (
-              <div className="flex items-center justify-between px-6 py-8 rounded-2xl">
+              <div className="flex items-center justify-between px-6 py-3 rounded-2xl">
                 {PLANETS.map((planet) => (
                   <button
                     key={planet.id}
@@ -230,7 +230,7 @@ export default function Home() {
           </section>
 
           {/* ── Section 2: Small planet row — tightly packed ── */}
-          <section className="mb-6">
+          <section >
             {loading ? (
               <div className="flex items-center justify-center gap-1 px-6 py-4 rounded-2xl">
                 {PLANETS.map((_, i) => (

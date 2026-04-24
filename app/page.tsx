@@ -15,100 +15,19 @@ type Planet = {
 };
 
 const PLANETS: Planet[] = [
-  {
-    id: "sun",
-    name: "Sun",
-    bigImage: "/sun_big.png",
-    smallImage: "/sun_small.png",
-    galaxy: "Milky Way",
-    diameter: "1,392,684 km",
-    lengthOfDay: "---",
-    avgTemp: "6000 Kelvin",
-  },
-  {
-    id: "mercury",
-    name: "Mercury",
-    bigImage: "/mercury_big.png",
-    smallImage: "/mercury_small.png",
-    galaxy: "Milky Way",
-    diameter: "4,878 km",
-    lengthOfDay: "4,222 Earth hours",
-    avgTemp: "167°C",
-  },
-  {
-    id: "venus",
-    name: "Venus",
-    bigImage: "/venus_big.png",
-    smallImage: "/venus_small.png",
-    galaxy: "Milky Way",
-    diameter: "12,104 km",
-    lengthOfDay: "2,802 Earth hours",
-    avgTemp: "464°C",
-  },
-  {
-    id: "earth",
-    name: "Earth",
-    bigImage: "/earth_big.png",
-    smallImage: "/earth_small.png",
-    galaxy: "Milky Way",
-    diameter: "12,756 km",
-    lengthOfDay: "24 hour ground",
-    avgTemp: "15°C",
-  },
-  {
-    id: "mars",
-    name: "Mars",
-    bigImage: "/mars_big.png",
-    smallImage: "/mars_small.png",
-    galaxy: "Milky Way",
-    diameter: "6,794 km",
-    lengthOfDay: "24.7 Earth hours",
-    avgTemp: "65 degrees Celsius",
-  },
-  {
-    id: "jupiter",
-    name: "Jupiter",
-    bigImage: "/jupiter_big.png",
-    smallImage: "/jupiter_small.png",
-    galaxy: "Milky Way",
-    diameter: "142,984 km",
-    lengthOfDay: "9.9 Earth hours",
-    avgTemp: "110-degree Celsius",
-  },
-  {
-    id: "saturn",
-    name: "Saturn",
-    bigImage: "/saturn_big.png",
-    smallImage: "/saturn_small.png",
-    galaxy: "Milky Way",
-    diameter: "120,536 km",
-    lengthOfDay: "10.7 Earth hours",
-    avgTemp: "140-degree Celsius",
-  },
-  {
-    id: "uranus",
-    name: "Uranus",
-    bigImage: "/uranus_big.png",
-    smallImage: "/uranus_small.png",
-    galaxy: "Milky Way",
-    diameter: "51,118 km",
-    lengthOfDay: "17.2 Earth hours",
-    avgTemp: "195-degree Celsius",
-  },
-  {
-    id: "neptune",
-    name: "Neptune",
-    bigImage: "/neptune_big.png",
-    smallImage: "/neptune_small.png",
-    galaxy: "Milky Way",
-    diameter: "49,528 km",
-    lengthOfDay: "16.1 Earth hours",
-    avgTemp: "-200°C",
-  },
+  { id: "sun",     name: "Sun",     bigImage: "/sun_big.png",     smallImage: "/sun_small.png",     galaxy: "Milky Way", diameter: "1,392,684 km", lengthOfDay: "---",              avgTemp: "6000 Kelvin"        },
+  { id: "mercury", name: "Mercury", bigImage: "/mercury_big.png", smallImage: "/mercury_small.png", galaxy: "Milky Way", diameter: "4,878 km",     lengthOfDay: "4,222 Earth hours", avgTemp: "167°C"              },
+  { id: "venus",   name: "Venus",   bigImage: "/venus_big.png",   smallImage: "/venus_small.png",   galaxy: "Milky Way", diameter: "12,104 km",    lengthOfDay: "2,802 Earth hours", avgTemp: "464°C"              },
+  { id: "earth",   name: "Earth",   bigImage: "/earth_big.png",   smallImage: "/earth_small.png",   galaxy: "Milky Way", diameter: "12,756 km",    lengthOfDay: "24 hour ground",    avgTemp: "15°C"               },
+  { id: "mars",    name: "Mars",    bigImage: "/mars_big.png",    smallImage: "/mars_small.png",    galaxy: "Milky Way", diameter: "6,794 km",     lengthOfDay: "24.7 Earth hours",  avgTemp: "65 degrees Celsius" },
+  { id: "jupiter", name: "Jupiter", bigImage: "/jupiter_big.png", smallImage: "/jupiter_small.png", galaxy: "Milky Way", diameter: "142,984 km",   lengthOfDay: "9.9 Earth hours",   avgTemp: "110-degree Celsius" },
+  { id: "saturn",  name: "Saturn",  bigImage: "/saturn_big.png",  smallImage: "/saturn_small.png",  galaxy: "Milky Way", diameter: "120,536 km",   lengthOfDay: "10.7 Earth hours",  avgTemp: "140-degree Celsius" },
+  { id: "uranus",  name: "Uranus",  bigImage: "/uranus_big.png",  smallImage: "/uranus_small.png",  galaxy: "Milky Way", diameter: "51,118 km",    lengthOfDay: "17.2 Earth hours",  avgTemp: "195-degree Celsius" },
+  { id: "neptune", name: "Neptune", bigImage: "/neptune_big.png", smallImage: "/neptune_small.png", galaxy: "Milky Way", diameter: "49,528 km",    lengthOfDay: "16.1 Earth hours",  avgTemp: "-200°C"             },
 ];
 
 const BIG_SIZE = 100;
-const SMALL_SIZE = 40;
+const SMALL_SIZE = 60;
 
 function PlanetDetail({
   planet,
@@ -129,6 +48,7 @@ function PlanetDetail({
       <div className="flex items-center justify-between px-8 pt-6 pb-2">
         <button
           onClick={onBack}
+          style={{ cursor: "pointer" }}
           className="text-white/50 hover:text-white text-sm tracking-widest uppercase transition-colors"
         >
           ← Back
@@ -252,7 +172,6 @@ export default function Home() {
 
   const activePlanet = PLANETS.find((p) => p.id === selectedPlanet);
 
-  // Show planet detail page
   if (activePlanet) {
     return (
       <PlanetDetail
@@ -263,7 +182,6 @@ export default function Home() {
     );
   }
 
-  // Show home / components page
   return (
     <main className="min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 pb-20 pt-10">
@@ -303,7 +221,7 @@ export default function Home() {
                       width={BIG_SIZE}
                       height={BIG_SIZE}
                       className="rounded-full object-contain"
-                      style={{ width: BIG_SIZE, height: BIG_SIZE }}
+                      style={{ width: BIG_SIZE, height: BIG_SIZE, cursor: "pointer" }}
                     />
                   </button>
                 ))}
@@ -311,10 +229,10 @@ export default function Home() {
             )}
           </section>
 
-          {/* ── Section 2: Small planet row ── */}
+          {/* ── Section 2: Small planet row — tightly packed ── */}
           <section className="mb-6">
             {loading ? (
-              <div className="flex items-center justify-between px-6 py-4 rounded-2xl">
+              <div className="flex items-center justify-center gap-1 px-6 py-4 rounded-2xl">
                 {PLANETS.map((_, i) => (
                   <div
                     key={i}
@@ -324,7 +242,7 @@ export default function Home() {
                 ))}
               </div>
             ) : (
-              <div className="flex items-center justify-between px-6 py-4 rounded-2xl">
+              <div className="flex items-center gap-1 px-6 py-4 rounded-2xl">
                 {PLANETS.map((planet) => (
                   <button
                     key={planet.id}
@@ -345,7 +263,7 @@ export default function Home() {
                       width={SMALL_SIZE}
                       height={SMALL_SIZE}
                       className="rounded-full object-contain"
-                      style={{ width: SMALL_SIZE, height: SMALL_SIZE }}
+                      style={{ width: SMALL_SIZE, height: SMALL_SIZE, cursor: "pointer" }}
                     />
                   </button>
                 ))}
